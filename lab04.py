@@ -20,7 +20,7 @@ def solveMaze(maze,startX,startY):
 	k = 1 #kounterForNumberOfTries
 
 	
-	while c < 4:
+	while (maze[x][y-1]) != ('G') and  (maze[x][y+1]) != ('G') and (maze[x-1][y]) != ('G') and (maze[x+1][y]) != ('G'):
 		if(maze[x-1][y]) != 'G' and ((maze[x-1][y]) !=  '+') and (isinstance(maze[x-1][y],int) == False): #W
 			s.push([x-1,y])
 			k = k+1
@@ -56,23 +56,5 @@ def solveMaze(maze,startX,startY):
 				s.pop()
 				x=s.peek()[0]
 				y=s.peek()[1]
-			
-			
-		if(maze[x][y-1]) == ('G') or  \
-			(maze[x][y+1]) == ('G') or\
-			(maze[x-1][y]) == ('G') or\
-			(maze[x+1][y]) == ('G'): #check is G there?
-				printMaze(maze)
-				return True
-	
-	return False #if c > 4, which means after four direction != solution -> FALSE
-
-maze = [
-['+','+','+','+','+','+'],
-['+',' ','+',' ',' ','G'],
-['+',' ',' ','+','+','+'],
-['+',' ','+','+',' ','+'],
-['+',' ',' ',' ',' ','+'],
-['+','+','+','+','+','+'] ]
-
-print(solveMaze(maze,4,4))
+	printMaze(maze)
+	return True #Return if found G
